@@ -1,8 +1,5 @@
-//? STD Libaries
 use std::path::Path;
-
-//? Modules
-use crate::{trace, info, warn, error};
+use crate::{trace, error};
 
 fn check_asset(asset_path: &str) -> bool {
     let path = Path::new(asset_path);
@@ -21,7 +18,7 @@ fn check_asset(asset_path: &str) -> bool {
 }
 
 pub fn check_assets() {
-    let assets = ["deno/deno.json", "deno/src/main.ts"];
+    let assets = ["install/install_docker_compose.sh", "install/install_docker.sh"]; // Folders and files are supported
 
     for asset in assets.iter() {
         check_asset(asset);

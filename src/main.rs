@@ -1,23 +1,25 @@
-//? STD Libaries
-use std::env;
 use std::time::Instant;
 
-//? Modules
 mod modules;
+use modules::enviroment;
+use modules::assets;
 use modules::log;
-pub use modules::assets;
+use modules::dependencies;
 
 fn main() {
-    let current_dir = env::current_dir().expect("Failed to get current directory");
+    println!("View logs/latest.log for logs...");
+    let current_dir = enviroment::get_env_dir();
     info!("ENV DIR: {:?}", current_dir);
 
-    let start_time_asset_checking = Instant::now();
+    info!("Starting assets checks");
+    let start_time_assets_checking = Instant::now();
     assets::check_assets();
-    let elapsed_time_asset_checking = start_time_asset_checking.elapsed();
-    info!("Asset checking took: {:?}", elapsed_time_asset_checking);
+    let elapsed_time_assets_checking = start_time_assets_checking.elapsed();
+    info!("Assets checking took: {:?}", elapsed_time_assets_checking);
 
-    //let mut _child = Command::new("deno")
-    //    .args(["task", "run"])
-    //    .spawn()
-    //    .expect("Failed to start Deno");
+    info!("Starting Depedencies Check");
+    let start_time_depedencies_checking = Instant::now();
+    dependencies::check_dependencies();
+    let elapsed_time_depedencies_checking = start_time_depedencies_checking.elapsed();
+    info!("Depedencies checking took: {:?}", elapsed_time_depedencies_checking);
 }

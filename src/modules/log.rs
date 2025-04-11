@@ -1,10 +1,9 @@
-//? STD Libaries
 use std::fs::{OpenOptions, rename, create_dir_all};
 use std::io::{Write, BufRead, BufReader};
+use std::process::exit;
 use std::sync::Mutex;
 use std::path::Path;
 
-//? Libaries
 use chrono::Local;
 use once_cell::sync::Lazy;
 
@@ -57,6 +56,10 @@ pub fn log(level: &str, msg: &str) {
 
     let mut file = LOGGER.lock().unwrap();
     let _ = file.write_all(log_line.as_bytes());
+
+    if level == "error" {
+        exit(1);
+    }
 }
 
 #[macro_export]
