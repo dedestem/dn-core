@@ -18,7 +18,7 @@ fn check_asset(asset_path: &str) -> bool {
 }
 
 pub fn check_assets() {
-    let assets = ["install/install_docker_compose.sh", "install/install_docker.sh"]; // Folders and files are supported
+    let assets = ["assets/scripts/install_docker_compose.sh", "assets/scripts/install_docker.sh"]; // Folders and files are supported
 
     for asset in assets.iter() {
         check_asset(asset);

@@ -16,7 +16,7 @@ pub fn check_dependencies() {
 
     if !is_installed("docker") {
         info!("Docker not found. Installing...");
-        run_script("install/install_docker.sh");
+        run_script("assets/scripts/install_docker.sh");
         info!("Docker installed successfully.");
     } else {
         trace!("Docker is already installed. OK");
@@ -24,7 +24,7 @@ pub fn check_dependencies() {
 
     if !is_installed("docker-compose") {
         info!("Docker Compose not found. Installing...");
-        run_script("install/install_docker_compose.sh");
+        run_script("assets/scripts/install_docker_compose.sh");
         info!("Docker Compose installed successfully.");
     } else {
         trace!("Docker Compose is already installed. OK");
