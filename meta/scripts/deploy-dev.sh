@@ -11,8 +11,9 @@ if [[ -d "/etc/dn-core/" ]]; then
     sudo rm -rf /etc/dn-core/
 fi
 
+echo ""
 mkdir -p /etc/dn-core/
-cp -r assets /etc/dn-core/assets
+cp -r files/* /etc/dn-core/
 cp target/release/dn-core /etc/dn-core/dn-core
 cd /etc/dn-core/
 
@@ -20,7 +21,10 @@ echo "Starting dn-core and tailing logs..."
 (
   sudo ./dn-core &
   echo "Waiting for logs..."
+  echo ""
   while [ ! -f logs/latest.log ]; do sleep 0.1; done
   echo "Viewing logs/latest.log"
+  echo "Use CTRL+C to stop dn-core and logging!"
+  echo ""
   tail -f logs/latest.log
 )
