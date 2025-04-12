@@ -5,6 +5,7 @@ use modules::enviroment;
 use modules::assets;
 use modules::log;
 use modules::dependencies;
+use modules::docker;
 
 fn main() {
     println!("View logs/latest.log for logs...");
@@ -22,4 +23,8 @@ fn main() {
     dependencies::check_dependencies();
     let elapsed_time_depedencies_checking = start_time_depedencies_checking.elapsed();
     info!("Depedencies checking took: {:?}", elapsed_time_depedencies_checking);
+
+    info!("Initalizing docker management system!");
+    info!("Starting nginx container");
+    docker::start_nginx();
 }
